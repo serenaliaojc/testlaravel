@@ -21,3 +21,6 @@ Route::get('/', function () {
 
 // Route::get('/about', 'AboutController@index');
 Route::get('/about/{id}', 'AboutController@index');
+
+Route::resource('products', 'ProductController');
+
