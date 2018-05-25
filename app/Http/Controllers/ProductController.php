@@ -76,7 +76,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -88,7 +89,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,
+            [
+                'name' => 'required|min:3'
+            ]);
+        $product = Product::find($id);
+        $product->update($request->all());
+        /* 1 */
+        // dd($request->all());
+        // $product = new Product();
+        // $product->name = $request->name;
+        // $product->save();
+
+        /* 2 */
+        // Product::create($request->all());
+        // // names from the form match database
+        // // for massive assignment
+
+        return redirect('products');
     }
 
     /**
